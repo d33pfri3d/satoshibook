@@ -1,0 +1,56 @@
+**_Satoshi Nakamoto - February 21, 2010_**
+
+Uploaded some UI changes to SVN as version 0.2.5.
+
+Instead of View->Show Generated, we now have tabs:
+- All Transactions
+- Sent/Received
+- Sent
+- Received
+
+Makes it a lot easier to flip to received and check for payments.
+
+Moved the "Your Addresses" book inside the main address book.  It was confusing having two address books.
+
+I found the "To:" in "From: unknown, To: (one of your bitcoin addresses)" still confusing, so I changed it to "From: unknown, Received with:".  The bitcoin address is abbreviated so you can see the label that you set in the Receiving tab of the address book.
+
+Fixed a few UI glitches from the upgrade to wxWidgets 2.9.0.
+
+I haven't forgotten about you people who want non-UI, but I had to do some fun stuff before more build bashing.
+
+**_Sabunir - February 21, 2010_**
+
+These improvements sound good. Thank you for your continued development of the application. As a suggestion, you could consider shortening "From: unknown, Received with:" to "From: unknown, Paid to:"
+
+
+**_giik - February 22, 2010_**
+
+When you merged the "your addresses" and "the other addresses", how can you see the difference between them? Perhaps it is better to build version 0.2.5 myself, but does anyone have a guide to build it on Mac OS X 10.6?
+
+
+**_Satoshi Nakamoto - February 23, 2010_**
+
+There are now "Sending" and "Recieving" tabs in the Address Book. Your addresses are referred to as "receiving addresses".
+
+madhatter was working on building it on Mac.  He had errors probably caused by UTF-16 wxWidgets 2.8.  Should have better luck now with 2.9.0.  wxWidgets 2.9.0 is UTF-8 and wouldn't have that problem.
+
+I think he had it working on FreeBSD, but he wanted a non-UI version.
+
+I have the command line and JSON-RPC daemon version working now.  Will SVN it in a day or two.
+
+I disabled gdm on my Ubuntu system so it boots into command line.  I hope I will be able to get it enabled again with rcconf.
+
+**_sirius - February 23, 2010_**
+
+In Ubuntu you can also switch to a non-graphical login screen by pressing ctrl + alt + F[1-8].
+
+
+**_Xunie - February 23, 2010_**
+
+And you can login to one of the TTY1-8 (what sirius-m was talking about) and execute /etc/init.d/gdm start and it will start gdm!
+
+**_Satoshi Nakamoto - February 23, 2010_**
+
+Ah yes, there we go, back to normal again.
+
+The ctrl+alt+F[1-8] thing never worked on this computer.  The screen just goes haywire.
