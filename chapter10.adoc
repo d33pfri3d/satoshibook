@@ -1,0 +1,41 @@
+= Generation slowed down dramatically
+
+**_m0mchil - February 22, 2010_**
+
+Am I the only one seeing minuscule generation lately? It was decent until around 20:00 GMT February 21st, but after that my machine (4 core I7) produced only one block for entire >12 hours. And there isn't even a clue for new difficulty hike in the debug log.
+
+Here are my possible scenarios:
+
+1. Some big BC bot came along.
+
+2. Someone is trying some kind of DoSing the system.
+
+3. Someone built a bitcoin mod with GPGPU (CUDA or sorts) support.
+
+4. Some kind of growth problem (i.g. we reached first of a kind network size and there is problem with that).
+
+Ideas?
+
+**_Sabunir - February 22, 2010_**
+
+Ideas? I would want a copy of this hypothetical CUDA-enabled client. However, I doubt that GPGPU acceleration would affect generation speeds very much. Only the most expensive of modern graphics cards have a clock speed of over 1 Ghz, after all.
+
+**_NewLibertyStandard - February 22, 2010_**
+
+No problem here. Other clients just happened to generate those blocks before you.
+
+
+**_Satoshi Nakamoto - February 23, 2010_**
+
+Just a random streak of bad luck.  It looks steady to me.
+
+Competition doesn't have an effect until the next automatic retarget adjustment, and we haven't reached the next one yet.
+
+The adjustments are every 2016 blocks.  To calculate our progress towards the next one, divide the block total by 2016.  The fractional part is how far we are to the next one.  
+
+My back-of-the-envelope projection: 42032 blocks/2016 = 20.85 = 85% of the way.  About 1.5 days to go until the next one.  That'll only be about 10 days since the last one, the target is 14 days, so 14/10 = 1.4 = around 40% difficulty increase.
+
+
+**_m0mchil_**
+
+My apologies, apparently it was just a ~12 hour period of connectivity problems. Bitcoin gold rush paranoia I guess.
