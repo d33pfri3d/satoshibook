@@ -1,0 +1,158 @@
+= URI-scheme for bitcoin
+
+_note : Interesting topic, this is where bitcoin gets a QR code._
+
+**_ec - February 16, 2010_**
+
+Hi, intrigued by the bitcoin-system, I have an idea:
+
+The bitcoin addresses could be improved by implementing an URI-scheme like e.g. torrent magnet links.
+
+So instead of 1Nu6wZC7JSuh6h8nfKkSTZ4kp9U4f83hhZ, we could more unambiguous say bitcoin:?addr=1Nu6wZC7JSuh6h8nfKkSTZ4kp9U4f83hhZ, and even configure browsers to redirect clicks on such links to a bitcoin client. This would allow one to implement "donate buttons" on homepages, "pay buttons" on webshops etc.
+
+If an IP should be included, URIs allow this as bitcoin://HOST_OR_IP:PORT?addr=1Nu6wZC7JSuh6h8nfKkSTZ4kp9U4f83hhZ. If wanted an amount could be specified as bitcoin:?amount=42.00;addr=1Nu6wZC7JSuh6h8nfKkSTZ4kp9U4f83hhZ (of course for the user to verify in the secure bitcoin-client).
+
+Just my 0.02 ฿ (return them to bitcoin:?addr=1Nu6wZC7JSuh6h8nfKkSTZ4kp9U4f83hhZ if you don't like them
+
+An URI-scheme could also be of use for implementing a mobile wallet with QR-codes, so that your buddy who wants to pay you X bitcoins don't have to enter your bitcoin-address manually, but only need to photograph the screen of your mobile phone.
+
+**_The Madhatter - February 24, 2010_**
+
+Yeah, I had totally thought of that too. A magnet link scheme would be awesome.
+
+**_Satoshi Nakamoto - February 24, 2010_**
+
+That would be nice at point-of-sale.  The cash register displays a QR-code encoding a bitcoin address and amount on a screen and you photo it with your mobile.
+
+**_The Madhatter - February 24, 2010_**
+
+That would be so awesome...
+
+-------
+_There is a further discussion between bitcointalk.org users Karmicads and DataWraith about the implementation of such thing, this disusses different ways that this 
+can be implemented.
+-------
+
+**_Satoshi Nakamoto - May 16, 2010_**
+
+```
+A freenet URI is like this:
+
+http://127.0.0.1:8888/USK@oshw3DxmJUt7q4ThF4dCez5IXbc9hCGcv0VuwLRCmeQ,ckeXv20F1gBzkqssB4RXHZ2nB1YRT8Pb8KYZk8wj-bs,AQACAAE/occamsrazor/6/f.pdf
+```
+There you go, we could easily do it the same way, like:
+http://127.0.0.1:8330/?to=<bitcoinaddress>;amount=<amount>
+
+Bitcoin can answer port 8330 on local loopback just as it does for JSON-RPC on 8332.  It would give an HTTP answer.
+
+```
+A bitcoin-link should be more like mailto: than magnet: IMHO.
+```
+I think we can do that.
+
+Although it would be possible for Bitcoin to take care of business in the HTTP response by presenting HTML UI to the user, as a user I would wonder if some website is trying to trick me or if I'm really talking to my own Bitcoin server.
+
+The HTTP response could simply be HTML with the JavaScript equivalent of the back button, sending it back to the page.  Bitcoin then pops up the Send Bitcoins dialog with the destination bitcoin address and amount already filled in.  It would work just like a mailto: link that pops up a new email with the address filled in.
+
+127.0.0.1 loopback is accessible by any user on the machine, it doesn't have per-user separation, but it's OK because it would only serve the convenience function of pre-filling the fields in a dialog.  You'd still have to press Send.  We'd have to make sure the Send button is not selected so it couldn't jump into the foreground while you're typing a space or enter.
+
+
+**_lachesis - June 11, 2010_**
+
+That's a very pragmatic answer. I like it.
+
+However, how would that work with the combined IP / Bitcoin Address URI (URN? URL?) scheme described here?
+http://bitcointalk.org/index.php?topic=158.msg1322#msg1322
+
+I know it's been nearly a month, sorry.
+
+**_Satoshi Nakamoto - June 16, 2010_**
+
+http://127.0.0.1:8330/?to=domain.com&amount=200.00&comment=order_12345
+or
+http://127.0.0.1:8330/?to=<bitcoinaddress><separatorchar>1.2.3.4&amount=200.00
+
+But as long as the link is already doing the typing for you, I don't see much benefit in using a domain address instead of bitcoin address.  With a bitcoin address, the user can't send an unidentified payment.  They can't send payment until they've been given a correct bitcoin address to send to.
+
+What would be nice about sending by domain is you could visually verify who it's going to.
+
+
+A more crucial issue is what if the browser isn't allowed to connect to 127.0.0.1:
+http://bitcointalk.org/index.php?topic=63.msg1589#msg1589
+
+and if that's true, then what about that example freenet link that had 127.0.0.1 in it?
+
+
+**_lachesis - June 16, 2010_**
+
+```
+But as long as the link is already doing the typing for you, I don't see much benefit in using a domain address instead of bitcoin address.  With a bitcoin address, the user can't send an unidentified payment.  They can't send payment until they've been given a correct bitcoin address to send to.
+
+What would be nice about sending by domain is you could visually verify who it's going to.
+```
+I think that hiding the complexity of Bitcoin addresses from the casual user is a good thing. Barring that, it should be possible to embed an observable but unalterable message with address transactions. Is there some reason this is technically infeasible?
+
+```
+A more crucial issue is what if the browser isn't allowed to connect to 127.0.0.1:
+http://bitcointalk.org/index.php?topic=63.msg1589#msg1589
+
+and if that's true, then what about that example freenet link that had 127.0.0.1 in it?
+```
+
+I think you're misunderstanding the issue. My browser will always be able to go to 127.0.0.1 (barring some strange IE settings or a virus). If I type the address into the URL bar or click a link, it will work fine. However, it isn't possible to use Javascript to complete POST requests between domains (or ports on the same domain).
+
+Try clicking this link:
+http://127.0.0.1/
+You probably don't see anything (unless you're running a web server on your system), but the browser happily tries to take you there.
+
+XMLHTTPRequest is what we were discussing in that other thread.
+
+
+**_sirius - June 16, 2010_**
+
+Yeah, I meant to say that cross-domain javascript calls are forbidden, so you can't call 127.0.0.1 from a javascript that doesn't reside in 127.0.0.1. Come to think of it, it would be quite funny if browsers allowed malicious cross-domain javascript to change people's Facebook pages etc.
+
+**_bencoder - June 16, 2010_**
+
+You could do an iframe that pointed to something like http://127.0.0.1:8330?pay=domain.com&amount=x&return=<wheretoreturn.php> and then that iframe would contain a little bitcoin interface stating how much & who you're paying and a button to confirm or cancel the payment. If you confirm the payment then it sends the coins to the domain and then redirects to the return value in the query string. bitcoin could add a ?paid=true or ?paid=false to the return location as well so the return script on the domain could then check if it received the payment correctly, or cancel the order.
+
+Edit: the bitcoin interface should also have a password before you can confirm the payment. Otherwise you could scan for port 8330 being open on anybody and then automatically have it send payments.
+
+**_lachesis - June 16, 2010_**
+
+```
+Edit: the bitcoin interface should also have a password before you can confirm the payment. Otherwise you could scan for port 8330 being open on anybody and then automatically have it send payments.
+```
+That's not exactly true. At the moment, Bitcoin only binds RPC to the loopback interface, 127.0.0.1. I would assume that this web interface would be the same. However, there SHOULD be a password to prevent trojans from trivially sending your wallet away. Wallet encryption needs to happen, too.
+
+
+**_Satoshi Nakamoto - July 18, 2010_**
+
+```
+I think you're misunderstanding the issue. My browser will always be able to go to 127.0.0.1 (barring some strange IE settings or a virus). If I type the address into the URL bar or click a link, it will work fine. However, it isn't possible to use Javascript to complete POST requests between domains (or ports on the same domain).
+```
+That's what I thought too.
+
+```
+Yeah, I meant to say that cross-domain javascript calls are forbidden, so you can't call 127.0.0.1 from a javascript that doesn't reside in 127.0.0.1. Come to think of it, it would be quite funny if browsers allowed malicious cross-domain javascript to change people's Facebook pages etc.
+```
+Now I'm hearing a report that it IS possible for javascript to do a cross-domain POST request to 127.0.0.1.  Not other domains, but just specifically to that one.  Great...
+
+If this is the case, then do not use the -server switch or bitcoind on a system where you do web browsing.
+
+I'll get started on adding the password field.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
