@@ -1,0 +1,519 @@
+= Chapter 1
+
+_**Satoshi Nakamoto - November 01, 2008. The Cryptography Mailing List**_
+
+---
+
+I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party.
+
+The paper is available at: http://www.bitcoin.org/bitcoin.pdf
+
+The main properties:
+  
+ * Double-spending is prevented with a peer-to-peer network.
+
+ * No mint or other trusted parties.
+
+ * Participants can be anonymous.
+
+ * New coins are made from Hashcash style proof-of-work.
+
+ * The proof-of-work for new coin generation also powers the network to prevent double-spending.
+
+Bitcoin: A Peer-to-Peer Electronic Cash System
+
+Abstract. A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another
+without the burdens of going through a financial institution. Digital signatures provide part of the solution, but the main
+benefits are lost if a trusted party is still required to prevent double-spending. We propose a solution to the double-spending problem using a peer-to-peer network. The network timestamps
+transactions by hashing them into an ongoing chain of hash-based proof-of-work, forming a record that cannot be changed without
+redoing the proof-of-work. The longest chain not only serves as proof of the sequence of events witnessed, but proof that it came
+from the largest pool of CPU power. As long as honest nodes control
+the most CPU power on the network, they can generate the longest
+chain and outpace any attackers. The network itself requires
+minimal structure. Messages are broadcasted on a best effort basis,
+and nodes can leave and rejoin the network at will, accepting the
+longest proof-of-work chain as proof of what happened while they
+were gone.
+
+Full paper at:
+http://www.bitcoin.org/bitcoin.pdf
+
+Satoshi Nakamoto
+
+---
+
+_**Satoshi Nakamoto - November 2, 2008. The Cryptography Mailing List**_
+
+Long before the network gets anywhere near as large as that, it would be safe 
+for users to use Simplified Payment Verification (section 8) to check for 
+double spending, which only requires having the chain of block headers, or 
+about 12KB per day. Only people trying to create new coins would need to run 
+network nodes. At first, most users would run network nodes, but as the 
+network grows beyond a certain point, it would be left more and more to 
+specialists with server farms of specialized hardware. A server farm would 
+only need to have one node on the network and the rest of the LAN connects with 
+that one node.
+
+The bandwidth might not be as prohibitive as you think. A typical transaction 
+would be about 400 bytes (ECC is nicely compact). Each transaction has to be 
+broadcast twice, so lets say 1KB per transaction. Visa processed 37 billion 
+transactions in FY2008, or an average of 100 million transactions per day. 
+That many transactions would take 100GB of bandwidth, or the size of 12 DVD or 
+2 HD quality movies, or about $18 worth of bandwidth at current prices.
+
+If the network were to get that big, it would take several years, and by then, 
+sending 2 HD movies over the Internet would probably not seem like a big deal. 
+
+Satoshi Nakamoto
+
+---
+
+_**November 3, 2008. The Cryptography Mailing List**_
+
+[, Unknown commentor]
+""
+As long as honest nodes control the most CPU power on the network,
+they can generate the longest chain and outpace any attackers.
+
+But they don’t. Bad guys routinely control zombie farms of 100,000
+machines or more. People I know who run a blacklist of spam sending
+zombies tell me they often see a million new zombies a day.
+
+This is the same reason that hashcash can’t work on today’s Internet
+the good guys have vastly less computational firepower than the bad
+guys.
+""
+
+Thanks for bringing up that point.
+
+I didn’t really make that statement as strong as I could have. The requirement
+is that the good guys collectively have more CPU power than any single
+attacker.
+
+There would be many smaller zombie farms that are not big enough to overpower
+the network, and they could still make money by generating bitcoins. The
+smaller farms are then the “honest nodes”. (I need a better term than
+“honest”) The more smaller farms resort to generating bitcoins, the higher the
+bar gets to overpower the network, making larger farms also too small to
+overpower it so that they may as well generate bitcoins too. According to the
+“long tail” theory, the small, medium and merely large farms put together
+should add up to a lot more than the biggest zombie farm.
+
+Even if a bad guy does overpower the network, it’s not like he’s instantly
+rich. All he can accomplish is to take back money he himself spent, like
+bouncing a check. To exploit it, he would have to buy something from a
+merchant, wait till it ships, then overpower the network and try to take his
+money back. I don’t think he could make as much money trying to pull a carding
+scheme like that as he could by generating bitcoins. With a zombie farm that
+big, he could generate more bitcoins than everyone else combined.
+
+The Bitcoin network might actually reduce spam by diverting zombie farms to
+generating bitcoins instead.
+
+Satoshi Nakamoto
+
+=== Bitcoin Maturation
+
+_** Satoshi Nakamoto, November 22, 2009 **_
+
+From the user's perspective the bitcoin maturation process can be broken down into 8 stages.
+
+ * The initial network transaction that occurs when you first click Generate Coins.
+ * The time between that initial network transaction and when the bitcoin entry is ready to appear in the All Transactions list.
+ * The change of the bitcoin entry from outside the All Transaction field to inside it.
+ * The time between when the bitcoin appears in the All Transfers list and when the Description is ready to change to Generated (50.00 matures in x more blocks).
+ * The change of the Description to Generated (50.00 matures in x more blocks).
+ * The time between when the Description says Generated (50.00 matures in x more blocks) to when it is ready to change to Generated.
+ * The change of the Description to Generated.
+ * The time after the Description has changed to Generated.
+
+Which stages require network connectivity, significant local CPU usage and or significant remote CPU usage? Do any of these stages have names?
+
+*Sirius-m, November 22 2009*
+
+It's important to have network connectivity while you're trying to generate a coin (block) and at the moment it is successfully generated.
+
+During generation (when the status bar says "Generating" and you're using CPU to find a proof-of-work), you must constantly keep in contact with the network to receive the latest block. If your block does not link to the latest block, it may not be accepted.
+When you successfully generate a block, it is immediately broadcast to the network. Other nodes must receive it and link to it for it to be accepted as the new latest block.
+Think of it as a cooperative effort to make a chain. When you add a link, you must first find the current end of the chain. If you were to locate the last link, then go off for an hour and forge your link, come back and link it to the link that was the end an hour ago, others may have added several links since then and they're not going to want to use your link that now branches off the middle.
+
+After a block is created, the maturation time of 120 blocks is to make absolutely sure the block is part of the main chain before it can be spent. Your node isn't doing anything with the block during that time, just waiting for other blocks to be added after yours. You don't have to be online during that time.
+
+
+*Satoshi Nakamoto, November 22 2009*
+
+It's important to have network connectivity while you're trying to generate a coin (block) and at the moment it is successfully generated.
+
+ * During generation (when the status bar says "Generating" and you're using CPU to find a proof-of-work), you must constantly keep in contact with the network to receive the latest block. If your block does not link to the latest block, it may not be accepted.
+
+  * When you successfully generate a block, it is immediately broadcast to the network. Other nodes must receive it and link to it for it to be accepted as the new latest block.
+Think of it as a cooperative effort to make a chain. When you add a link, you must first find the current end of the chain. If you were to locate the last link, then go off for an hour and forge your link, come back and link it to the link that was the end an hour ago, others may have added several links since then and they're not going to want to use your link that now branches off the middle.
+
+After a block is created, the maturation time of 120 blocks is to make absolutely sure the block is part of the main chain before it can be spent. Your node isn't doing anything with the block during that time, just waiting for other blocks to be added after yours. You don't have to be online during that time.
+
+
+--- 
+
+=== How Anonymous are Bitcoin?
+
+*November 22, 2009. Repost to bitcointalk.org*
+
+**_Are there any plans to make this service anonymous? e.g; Being able to route BitCoin through Tor._**
+
+There will be a proxy setting in version 0.2 so you can connect through TOR.  I've done a careful scrub to make sure it doesn't use DNS or do anything that would leak your IP while in proxy mode.
+
+**_Someone correct me people, but I thought it IS already anonymous! Can the person I'm transferring money to know my IP or something?_**
+
+When you send to a bitcoin address, you don't connect to the recipient.  You send the transaction to the network the same way you relay transactions.  There's no distinction between a transaction you originated and one you received from another node that you're relaying in a broadcast.  With a very small network though, someone might still figure it out by process of elimination.  It'll be better when the network is larger.
+
+If you send by IP, the recipient sees you because you connect to their IP.  You could use TOR to mask that.
+
+You could use TOR if you don't want anyone to know you're even using Bitcoin.
+
+Bitcoin is still very new and has not been independently analysed.  If you're serious about privacy, TOR is an advisable precaution.
+
+**_Tor can be dangerous, like exit nodes that log information like passwords and the like.
+So a major question about the security of Bitcoin when using it with Tor (or any other proxy service) arises:
+
+So what exactly does Bitcoin send when it connects to an IP?
+Is everything encrypted that we send over the line?
+Can someone 'steal' bitcoins by listening at the end of a proxy (or in Tor's case an "exit node")?
+
+Speaking of security, we might just want to add a simple version checking procedure in bitcoin that will alert a user if s/he is running an "insecure version of bitcoin"._**
+
+True, sending by IP through Tor trades one problem for another.  The Tor exit node can see the text of your message and potentially MITM you.
+
+Best to only send to bitcoin addresses then.  Payments by bitcoin address are broadcast over the network as part of the normal network traffic.  All communications with the network are broadcasts of public information.
+
+---
+
+**November 25, 2009. Repost to bitcointalk.org**
+
+**_Can nodes on the network tell from which and or to which bitcoin address coins are being sent? Do blocks contain a history of where bitcoins have been transfered to and from?_**
+
+Bitcoins are sent to and from bitcoin addresses, which are essentially random numbers with no identifying information.
+
+When you send to an IP address, the transaction is still written to a bitcoin address.  The IP address is only used to connect to the recipient's computer to request a fresh bitcoin address, give the transaction directly to the recipient and get a confirmation. 
+
+Blocks contain a history of the bitcoin addresses that a coin has been transferred to.  If the identities of the people using the bitcoin addresses are not known and each address is used only once, then this information only reveals that some unknown person transferred some amount to someone else.
+
+The possibility to be anonymous or pseudonymous relies on you not revealing any identifying information about yourself in connection with the bitcoin addresses you use.  If you post your bitcoin address on the web, then you're associating that address and any transactions with it with the name you posted under.  If you posted under a handle that you haven't associated with your real identity, then you're still pseudonymous.
+
+For greater privacy, it's best to use bitcoin addresses only once.  You can change addresses as often as you want using Options->Change Your Address.  Transfers by IP address automatically use a new bitcoin address each time.
+
+**_Can nodes tell which bitcoin addresses belong to which IP addresses?_**
+
+No.
+
+**_Is there a command line option to enable the sock proxy the first time that bitcoin starts?_**
+
+In the next release (version 0.2), the command line to run it through a proxy from the first time is:
+`bitcoin -proxy=127.0.0.1:9050`
+
+The problem for TOR is that the IRC server which Bitcoin uses to initially discover other nodes bans the TOR exit nodes, as all IRC servers do.  If you've already connected once before then you're already seeded, but for the first time, you'd need to provide the address of a node as such:
+`bitcoin -proxy=127.0.0.1:9050 -addnode=<someipaddress>`
+
+If someone running a node with a static IP address that can accept incoming connections could post their IP to use for -addnode, that would be great.
+
+**_What happens if you send bitcoins to an IP address that has multiple clients connected through network address translation (NAT)?_**
+
+Whichever one you've set your NAT to forward port 8333 to will receive it.  If your router can change the port number when it forwards, you could allow more than one client to receive.  For instance, if port 8334 forwards to a computer's port 8333, then senders could send to "x.x.x.x:8334" 
+
+If your NAT can't translate port numbers, there currently isn't a command line option to change the incoming port that bitcoin binds to, but I'll look into it.
+
+---
+
+*Satoshi Nakamoto - November 27, 2009. Bitcointalk.org*
+
+We've been working hard on improvements for the next version release.  Martti (sirius-m) added some nice features to make it more user friendly and easier to run in the background:
+ - Minimize to system tray option
+ - Autostart on boot option so you can keep it running in the background automatically
+ - New options dialog layout
+ - Setup EXE for Windows, in addition to the archive download
+
+I've been working on a number of refinements to the networking code and laying the groundwork for future functionality.  Also coming in version 0.2:
+ - Multi-processor support for coin generation
+ - Proxy support
+
+
+---
+
+*December 09, 2009. bitcointalk.org*
+
+== A Few suggestions
+
+From madhatter on the bitcointalk.org forums. 
+
+__When the bitcoin software establishes a connection with a peer (client TCP socket) have the client send the handshake string. Right now you have the server (server TCP socket) send the handshake. My reasons for this are anonymity of course. It is far too easy for ISPs to portscan clients and detect they are running this program.__
+
+That's a good idea.  The side accepting the connection just needs to withhold from sending anything until it receives a valid handshake.  Any portscan would only get a dead connection that doesn't volunteer to identify itself. 
+
+__Use some sort of encryption during the handshake (sort of goes with the statement/request above) to obfuscate what the software is during DPI (deep packet inspection). I am really thinking about people in non-free (as in freedom) countries such as China/Iran.__
+
+I have thought about eventually SSLing all the connections.  I assume anything short of SSL would be pointless against DPI.  Maybe a better more immediate solution is to connect through TOR, which will be possible with 0.2.  
+
+__Some sort of an API is needed so that this system can be integrated with websites to provide instant-on services. A simple https receipt mechanism would do wonders. Have the client post each incoming payment to an https url with all of the relevant information and provide status updates. Also an outbound payment mechanism would be nice. So one could automate payments (and batch payments) outbound. Status could be returned via the https receipt interface.__
+
+That's one of the main things on the agenda after 0.2.
+
+__Static port/Random port. Have a setting to randomly assign the port that it runs on. (also be able to set it statically for very restrictive firewalls).__
+
+Yeah, the other stealth stuff would be kinda pointless if it's always the same port number.
+
+__UPnP support. Have the client automatically create the port forward on upstream routers. Enabled by default. Can be turned off in the options menu.__
+
+I'm looking forward to trying UPnP.  Do most P2P clients typically have UPnP enabled by default?
+
+__Ability to compile a headless (console only) install for \*NIX systems. Also have the ability to just run as a network service. Perhaps with a telnet-able port for control (or even a unix socket would be ok).__
+
+I'm still thinking about how best to structure the management interface.  Maybe command line commands to communicate with the background daemon to query transactions received and initiate sending transfers.  That would be more automation friendly.  Or what about an http interface on some port other than 80 to manage it with a browser?
+
+**_The Madhatter - December 10, 2009. bitcointalk.org_**
+
+Most modern P2P software tries UPnP by default. You can (of course) disable it (usually) in the options.
+
+Hmm. I had thought about that as well. Your first idea is probably best. That way you can run the server daemon "headless" and have your choice of a front end. (One of the front ends could be a PHP [or C++ CGI] program that runs on your favorite webserver).
+
+This would also enable you to run the front end and back end on different machines. (Ex. headless on a linux server that has a static IP to make receiving payments easier [pay by ip mode] and a front end client for management that can be ran on windows/mac/or something else). Front ends can also be ran on clients with very low cpu power such as mobile phones. *nudge nudge* Wink
+
+One other thing I have thought of is the seeding. The app could be pre-seeded before downloading. You could prepare a new archive daily that is pre-seeded. That would do away with the IRC connection. (Or it could be used as a fallback, I suppose. I still haven't audited the IRC connection code. I am thinking of a few exploits but I don't want to mention them until I am sure they exist.) Pre-seeding would also cure the TOR+IRC problem. I know that people will want to run this system over I2P+TOR. Tongue
+
+Also you could pre-seed the blocks so they won't have to be downloaded upon initial run. (Downloading 28,000 blocks on a slower ADSL takes forever I couldn't imagine how long it would take when there are millions of blocks -- a lifetime).
+
+Can you give me CVS access or something? (If not, can I send you patches?) I'd like to help out. I am mostly a Linux/BSD guy and I would like to lend my expertise in those areas.
+
+Cheers! Smiley
+
+**_Satoshi Nakamoto - December 10, 2009_**
+
+_Front ends can also be ran on clients with very low cpu power such as mobile phones._
+
+That's a good approach for mobile.  Programmatic API used by PHP (any language) to present a web UI covers remote admin, mobile and any other client that can't be online all the time with a static IP.  It would be like webmail.  It would be easier for new users to get started if they only need to create an account on a website, not install software.
+
+_The app could be pre-seeded before downloading. Pre-seeding would also cure the TOR+IRC problem. I know that people will want to run this system over I2P+TOR._
+
+Yeah, we can phase out IRC when there are enough static nodes to preprogram a seed list.  Once you get seeded, you don't need IRC.
+
+_Also you could pre-seed the blocks so they won't have to be downloaded upon initial run. (Downloading 28,000 blocks on a slower ADSL takes forever I couldn't imagine how long it would take when there are millions of blocks -- a lifetime)._
+
+There were some issues in 0.1.5 where the initial block download could get bogged down.  0.2 has code to make sure it goes smoothly.  It ought to take less than an hour, I think.  I need to hurry up and get 0.2 out the door.
+
+The blocks increase linearly, it'll be decades before it's millions.  In theory, the block download time should top out 8 months from now when Moore's Law will be growing faster than the block chain.
+
+_Can you give me CVS access or something? (If not, can I send you patches?) I'd like to help out._
+
+It's SVN on sourceforge.  PM or e-mail me your sourceforge account and I'll give you access.
+
+_I am mostly a Linux/BSD guy and I would like to lend my expertise in those areas._
+
+That's great because that's where I have less expertise.  For instance, I haven't researched the best way to do the "Start Bitcoin on system startup" feature on Linux.  On Windows, the option adds/removes an icon in the Startup folder.
+
+**_The Madhatter - December 12, 2009. bitcointalk.org_**
+
+I almost have the svn 0.2 compiling on Mac OS X 10.4.11/Intel (I also have a PPC970 machine here as well so a PPC build would be possible as well). The windowing is native carbon too via wxwidgets! It is FAST! Wink I had to create a new makefile (makefile.osx; based on makefile.unix of course.. given any thought to using autoconf?) and put some ifdef's into header.h. I have patches. I will keep toying around. I might try it on FreeBSD next.
+
+I already run a great deal of TOR and I2P nodes so for me to add this app to those same servers is a snap. Smiley
+
+I think that breaking bitcoin into two apps is ideal. A wxwidgets front end (since it is mostly all there) and a backend that binds to a control TCP socket. I have been reading over the source to see how hard it would be to break it apart and I think it should be fairly simple. Of course an API would have to be developed.
+
+I'll keep toying around with the source code and see what I can come up with.
+
+**__Satoshi Nakamoto - December 12, 2009. bitcointalk.org__**
+
+Mac support would be nice.  wxWidgets really pays off for cross platform.
+
+Please don't try PPC.  PPC is big-endian and Bitcoin is little-endian, there would be endless endian bugs making it harder for me to debug the network if there's a potentially byte-swapping node out there.  PPC is on its way out anyway.
+
+Considered autoconf.  Autoconf is a necessity for large projects with a quagmire makefile, but I think we're small enough that it's more optimal without it.  I'd rather keep the makefile simple as long as possible.
+
+```
+  I think that breaking bitcoin into two apps is ideal. A wxwidgets front end (since it is mostly all there) and a backend that binds to a control TCP socket. I have been reading over the source to see how hard it would be to break it apart and I think it should be fairly simple. Of course an API would have to be developed.
+```
+
+My head hurts just thinking about that.  Funnelling all the UI backend through a TCP connection would make everything twice as hard.  There's too much bandwidth between the UI and the internal data structures in order to keep the listview control updated, because of the way the listview control works.
+
+I'd rather have command line control, that would get us remote admin and batch automation.
+
+**_SmokeTooMuch - December 12, 2009. bitcointalk.org_**
+
+Suggestion :
+
+Since the coins are generated faster on fast machines, many people will want to use their GPU power to do this, too.
+
+So, my suggestion is to implement a GPU-computing support using ATI Stream and Nvidia CUDA.
+
+**_Satoshi Nakamoto - December 12, 2009. bitcointalk.org_**
+
+The average total coins generated across the network per day stays the same.  Faster machines just get a larger share than slower machines.  If everyone bought faster machines, they wouldn't get more coins than before.
+
+We should have a gentleman's agreement to postpone the GPU arms race as long as we can for the good of the network.  It's much easer to get new users up to speed if they don't have to worry about GPU drivers and compatibility.  It's nice how anyone with just a CPU can compete fairly equally right now.
+
+
+**_The Madhatter - December 13, 2009. bitcointalk.org_**
+
+Um, so command line only mode could be selected at compile-time? Perhaps with a define? And that would shut off the graphical UI stuff?
+
+Just want to be on the same page here.
+
+**_Satoshi Nakamoto - December 13, 2009. bitcointalk.org_**
+
+There would be a command line switch at runtime to tell it to run without UI.  All it needs to do is not create the main window.  A simplistic way would be to disable "pframeMain->Show" and "ptaskbaricon->Show" in ui.cpp.  The network threads don't care that the UI isn't there.  The only other UI is a message box in CheckDiskSpace if it runs out of disk space.
+
+Then a separate command line utility to communicate with it to do things.  Not sure what it should be named.
+
+**_The Madhatter - December 13, 2009. bitcointalk.org_**
+
+One quick question about "natural deflation" (as I call it). I have noticed that it is possible to spend to old addresses that no longer work. In essence the coins can not be claimed. Wouldn't there be a natural deflation effect because of this? I mean if the coins max out at 21,000,000 wouldn't the number of coins slowly work backwards due to payment errors?
+
+**_Satoshi Nakamoto - December 13, 2009. bitcointalk.org_**
+
+"natural deflation"... I like that name for it.  Yes, there will be natural deflation due to payment mistakes and lost data.  Coin creation will eventually get slow enough that it is exceeded by natural deflation and we'll have net deflation.
+
+---
+
+== Questions about Bitcoin
+
+**_SmokeTooMuch - December 10, 2009. bitcointalk.org_**
+
+Hi, yesterday I stumbled upon this great payment option.
+
+I read my way through many sites but now I have some questions that couldn't get answered.
+
+  - 1. Is Bitcoin really anonymous? I mean totally and completely? Is my ISP able to detect, that I have sent or received a Bitcoin payment? Maybe he is even able to see that I am running Bitcoin right now?
+
+  - 2. If I understood this correctly, my payment partners are not able to see who I am. Does this mean, they can not see my real IP adress? Only the Bitcoin-adress? Even if they monitors their network connections and stuff?
+
+  - 3. If there is a way for my ISP to tell that I am running Bitcoin or for my payment partners to find out my IP, would it be more safe to tunnel the network traffic through a VPN (payed with Paysafecard for example)? Could this be dangerous, because the VPN provider will be able to capture my payment?
+
+  - 4. What files need to be backed up for not losing my "money"? Only the wallet.dat or the whole Bitcoin AppData directory ?
+
+  - 5. Isn`t it possible to multiply a wallet and use it on different machines? This way you would double your money without doing anything for it.
+  Are there security measures for this case?
+
+  - 6. When someone loses his wallet, will there be a way to recreate the lost coins in the system ? Else the 21 million maximum will not be correct.
+  (I mean not to recover the lost coins for one person, but if all the 21mio coins were created, and someone loses his wallet with 1mio coins, will the the others be able to create these 1mio coins now or are they totally lost for the bitcoin network?)
+
+  - 7. I have read that there currently are about 130k blocks out there. At my pc it only shows me about 24k. Is there something wrong or is this a normal behaviour ?
+
+  - 8. I`m afraid I didn`t understand everything about the bitcoin creation. How many coins are created by a machine in 24h in average?
+
+  - 9. I know that port 8333 should be forwarded to the bitcoin-running machine. Now I ask myself if this goes for the TCP or the UDP.
+  And is this port required for generating coins? Or only for payment transactions?
+
+  - 10. I`ve seen that the source code for bitcoin is open for everybody. Can this be an actual danger? If the code is manipulated people can create more bitcoins than others, can`t they? This would be a massive leak of security.
+
+  - 11. I`ve seen a formular to clalculate the coins that will be created in a certain amount of time. It had something to do with the maximum cpu speed and the availabe. Can`t find it anymore, so I`m asking you to explain me the coin creating. Do slow machines produce as much coins as high-end ones?
+
+  - 12. Are there any other exchanging systems or potential payment partners except for new liberty standard?
+
+  - 13. What happens when my system crashes? Is the wallet saved automatically or only when bitcoin gets closed manually? (Maybe even real-time saving when a coint is created or payment is made?)
+
+  - 14. Is there a way to see how many bitcoins have been generated this far? And how old is Bitcoin already?
+
+  I know ... Many many questions but I am really interested in your service and want to know everything before I start using it more frequently.
+
+
+(Sorry for my bad English...)
+
+**_Satoshi Nakamoto - December 10, 2009. bitcointalk.org_**
+
+1-3:
+For that level of anonymity you need to connect through TOR, which will be possible with version 0.2, which is only a few weeks away.  I'll post TOR instructions at that time.
+
+4:
+Version 0.1.5: backup the whole %appdata%\Bitcoin directory.
+Version 0.2: you can backup just wallet.dat.
+
+5:
+Nope.  The whole design is all about preventing that from working.
+
+6:
+Those coins can never be recovered, and the total circulation is less.  Since the effective circulation is reduced, all the remaining coins are worth slightly more.  It's the opposite of when a government prints money and the value of existing money goes down.
+
+7:
+It's currently 29,296 blocks.  The circulation is the number of blocks times 50, so the current circulation is 1,464,800 bc.  
+
+If you only have 24k blocks, it must not have finished the initial block download.  Exit bitcoin and start it again.  Version 0.2 is better/faster at the initial block download.
+
+8:
+Typically a few hundred right now.  It's easy now but it'll get harder as the network grows.
+
+9:
+Good question, it's TCP.  The website needs to be updated to say TCP port 8333.
+
+The port forwarding is so other nodes can connect to you, so it helps you stay connected because you are able to be connected with more nodes.  You also need it to receive payments by IP address.
+
+10:
+No, the other nodes won't accept that.
+
+Being open source means anyone can independently review the code.  If it was closed source, nobody could verify the security.  I think it's essential for a program of this nature to be open source.
+
+11:
+Slower machines produce fewer coins.  It's proportional to CPU speed.
+
+12:
+There are more coming.
+
+13:
+It uses a transactional database called Berkeley DB.  It will not lose data in a system crash.  Transactions are written to the database immediately when they're received.
+
+14:
+For now, you can just multiply the total blocks by 50.  The Bitcoin network has been running for almost a year now.  The design and coding started in 2007.
+
+**_SmokeTooMuch - December 11, 2009. bitcointalk.org_**
+
+Wow, thanks alot for these detailed answers.
+
+But today another question came to my mind.
+
+Lets say we know, that our neighbar uses Bitcoin, and we also know that he will receive a payment soon (maybe because he owns an internet shop and accepts bitcoin as payment option).
+
+Also, we know that he uses WLAN and his network is unsecured or weak protected. Same goes for router configuration.
+
+We now could log into his router configuration, change the ip adresses for the forwarded port 8333 to our system ip.
+Now every payment would be received by our bitcoin client.
+
+Is this actually going to work ?
+
+I know this is highly criminal and the scenario is .. well, lets call it "uncommon", but in theory it should work, right ?
+(Not that I have an interest in harming people, but I know that criminal people will try many ways to get some money.)
+
+BTW: same should work when you are on a LAN party with unprotected router config.
+
+**_Satoshi Nakamoto - December 11, 2009. bitcointalk.org_**
+
+That's true, with the send-to-IP option, you are sending to whoever answers that IP.  Sending to a bitcoin address doesn't have that problem.
+
+The plan is to implement an IP + bitcoin address option that would have the benefits of both.  It would still use a different address for each transaction, but the receiver would sign the one-time-use address with the given bitcoin address to prove it belongs to the intended receiver.
+
+
+---
+
+== Bitcoin 0.2!
+
+**_Satoshi Nakamoto - December 16, 2009. bitcointalk.org_**
+
+Bitcoin version 0.2 is here!
+
+Download links:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.2.0-win32-setup.exe/download
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.2.0-win32.zip/download
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.2.0-linux.tar.gz/download
+
+New Features
+
+Martti Malmi
+ - Minimize to system tray option
+ - Autostart on boot option so you can keep it running in the background automatically
+ - New options dialog layout for future expansion
+ - Setup program for Windows
+ - Linux version (tested on Ubuntu)
+Satoshi Nakamoto
+ - Multi-processor support for coin generation
+ - Proxy support for use with TOR
+ - Fixed some slowdowns in the initial block download
+
+Major thanks to Martti Malmi (sirius-m) for all his coding work and for hosting the new site and this forum, and New Liberty Standard for his help with testing the Linux version.
+
+
+---
