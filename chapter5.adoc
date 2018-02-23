@@ -92,5 +92,268 @@ Satoshi, I figured it will take my modern core 2 duo about 20 hours of nonstop w
 
 I don't know if that means reducing the block size or reducing the 120-block threshold to say 12-block only or what, but because the difficulty is increasing I can imagine that a year from now the situation will be even worse (3+ weeks until you see the first spendable coins!) and we better find a solution for this ASAP.
 
+**_Sabunir - February 16, 2010_**
+
+I would like to comment that as of late, it seems almost as if I am generating nearly no Bitcoins. Indeed, my rate of acquisition seems to be greater than ten times slower. If I cannot stay online for about fourteen consecutive hours (very hard to do on a satellite connection!), I actually get nothing at all.
+
+How this exactly relates to the difficulty adjustments is beyond my knowledge; I offer this feedback as a kind of "field report".
+
+**_theymos - February 16, 2010_**
+
+I generated 5 blocks today on my Pentium processor. Two of them were within 3 minutes of each other.
+
+I have noticed some slowdown since the adjustment, but I still generate a lot of coins. My computer is off while I'm sleeping, and BitCoin bootstraps quickly when I turn it back on. Do you guys-who-are-having-trouble have the BitCoin port open?
+
+**_Sabunir - February 16, 2010_**
+
+My port is open, both in my software and hardware firewall. My router is handling it appropriately. Perhaps it has to do with my connection's very high latency (2000ms or more on average) and/or my high packet loss (sometimes up to 10% loss)?
+
+**_Satoshi Nakamoto - February 16, 2010_**
+
+```
+  Satoshi, I figured it will take my modern core 2 duo about 20 hours of nonstop work to create ฿50.00! With older PCs it will take forever. People like to feel that they "own" something as soon as possible, is there a way to make the generation more divisible? So say, instead of making ฿50 every 20 hours, make ฿5 every 2 hours? 
+```
+
+I thought about that but there wasn't a practical way to do smaller increments.  The frequency of block generation is balanced between confirming transactions as fast as possible and the latency of the network.
+
+The algorithm aims for an average of 6 blocks per hour.  If it was 5 bc and 60 per hour, there would be 10 times as many blocks and the initial block download would take 10 times as long.  It wouldn't work anyway because that would be only 1 minute average between blocks, too close to the broadcast latency when the network gets larger.
+
+**_Suggester - February 17, 2010_**
+
+```
+  If I cannot stay online for about fourteen consecutive hours (very hard to do on a satellite connection!), I actually get nothing at all.
+```
+Can Satoshi confirm whether the computations your machine had made carries on if the session was interrupted, or do you need to start all over if you disconnected before generating at least one block? If it carries on, maybe a little meter indicating the % left until your block completes can be a nice addition so people would have some hope (actually, it will be a nice addition anyway whether the computations get carried on after disconnection or not!)
+
+```
+  I generated 5 blocks today on my Pentium processor. Two of them were within 3 minutes of each other.
+```
+
+Ok, I just realized that I didn't understand how Bitcoin worked to begin with. The blocks get generated anyway whether you're generating coins or not. The average amount of creation conformed what I observed before (120/20 hrs, or 6/hr). This has got absolutely nothing to do with your CPU power, it's  constant for all practical purposes. The CPU power determines the "transactions" that get created and "matures in xx blocks". My head just got a bit bigger now.
+
+This also means theymos that there was probably a coincidence or error for your 3-minute interval observation!
+
+**_Satoshi Nakamoto - February 17, 2010**
+
+```
+  Perhaps it has to do with my connection's very high latency (2000ms or more on average) 
+```
+2 seconds of latency in both directions should reduce your generation success by less than 1%.
+
+```
+  and/or my high packet loss (sometimes up to 10% loss)?
+```
+
+Probably OK, but I'm not sure.  The protocol is designed to resync to the next message, and messages get re-requested from all the other nodes you're connected to until received.  If you miss a block, it'll also keep requesting it every time another blocks comes in and it sees there's a gap.  Before the original release I did a test dropping 1 out of 4 random messages under heavy load until I could run it overnight without any nodes getting stuck.
+
+**_Sabunir - February 21, 2010_**
+
+How do you adjust this difficulty, anyway? (Administrating a decentralized system?) And what would prevent an attacker from setting the difficulty very low or very high to interfere with the system?
+
+**_NewLibertyStandard - February 21, 2010_**
+
+My understanding is that every Bitcoin client has the same algorithm (formula) built into it to automatically adjust the difficulty every so many blocks. Not only that, but I think that Bitcoin will not accept blocks generated at a different difficulty, so if a modified Bitcoin client tried to send out more easily generated blocks, all the authentic clients would reject the fake blocks.
+
+**_Satoshi Nakamoto - February 24, 2010_**
+
+The automatic adjustment happened earlier today.
+
+```
+  24/02/2010 0000000043b3e500000000000000000000000000000000000000000000000000
+```
+
+```
+  24/02/2010 | 3.78 | +49%
+```
+
+I updated the first post.
+
+**_Suggester - February 25, 2010_**
+
+```
+  My understanding is that every Bitcoin client has the same algorithm (formula) built into it to automatically adjust the difficulty every so many blocks. 
+```
+Then how is it dependent on how many CPU's are connected to the whole network?
+
+```
+  Not only that, but I think that Bitcoin will not accept blocks generated at a different difficulty, so if a modified Bitcoin client tried to send out more easily generated blocks, all the authentic clients would reject the fake blocks.
+```
+
+We need Satoshi to confirm that because clients accept blocks generated at easier difficulties all the time whenever the PoW's difficulty increases.
+
+**_Satoshi Nakamoto - February 25, 2010_**
+
+The formula is based on the time it takes to generate 2016 blocks.  The difficulty is multiplied by 14/(actual days taken).  For instance, this time it took 9.4 days, so the calculation was 14/9.4 = 1.49.  Previous difficulty 2.53 * 1.49 = 3.78, a 49% increase. 
+
+I don't know what you're talking about accepting easier difficulties.
+
+**_Suggester - Febreuary 25, 2010_**
+
+We were essentially discussing Sabunir's question about what prevents someone from messing with the program's source code to adjust block-generating difficulty to be very easy, then make a network on his own and create a, say, 50,000-block proof-of-work within seconds then finally propagate it across the real network to steal "votes" towards his new fake blocks as technically, his proof would be "the longest". So is there a way to verify how much work was actually put into a given PoW (for eg. how many zero's are at the beginning of each hash or something)?
+
+```
+  It wouldn't work anyway because that would be only 1 minute average between blocks, too close to the broadcast latency when the network gets larger.
+```
+
+Since we're at it, what's the approximate time for proof-of-work propagation across a network of about 100,000 machines? Is there a way to optimize connections so that broadcasting is done via a pyramid-form to minimize the needed time? For example, the block creator sends it to 10 nodes, then those 10 send it to a 100 provided that none of those 100 were among the original 11, then those 100 tell a 1000 provided that none of those 1000 were among the original 111, etc to save time.
+
+**_dmp1ce - May 02, 2010_**
+
+I am also wondering about Suggester's question.  It seems like modifying the code to give a node an advantage in generating coins might be possible.
+
+I am confused as to why each node on the network is actually doing when set to generate coins.  What problem are they solving that takes 100% CPU?
+
+**_theymos - May 02, 2010_**
+
+Your CPU is creating SHA-256 hashes. It's not possible to cheat: if the hashes you create are invalid, no one else in the network will accept them. If you inject a 50,000-block chain of "easy blocks" into the network, everyone will immediately see that the hash for the first block in the chain is above the current target and ignore it and every block derived from it.
+
+**_fergalish - May 11, 2010_**
+
+Interestingly, using laszlo's mac os version of bitcoin, one can see how many hashes per second the computer is performing.  I'm currently getting about 1 million hashes per second.  Given the current difficulty 0000000013ec53, I'll have to perform about 2^35~3x10^10 hashes before I have a decent chance of getting one below the target, and at 10^6/s, that should take about 30000 sec, or about two per day.  The actual interval varies a lot - it's a random process, but that seems to be more-or-less the correct amount.
+
+Satoshi, could you update the first post in this thread, with the complete history of difficulty-of-work increases please?  I'd try, but for some reason, I've lost my logfiles.  Fortunately the wallet is safe.
+
+**_laszlo - May 11, 2010_**
+
+Maybe someone with a little background in this statistics/math stuff can shed some light on this..
+
+The way this thing works is it takes a (basically random) block of data and alters a 32 bit field inside it by starting at 1 and incrementing.  The block of data also contains a timestamp and that's incremented occasionally just to keep mixing it up (but the incrementing field isn't restarted when the timestamp is update).  If you get a new block from the network you sort of end up having to start over with the incrementing field at 1 again.. however all the other data changed too so it's not the same thing you're hashing anyway.
+
+The way I understand it, since the data that's being hashed is pretty much random and because the hashing algorithm exhibits the 'avalanche effect' it probably doesn't matter if you keep starting with 1 and incrementing it or if you use pseudo random values instead, but I was wondering if anyone could support this or disprove it.
+
+Can you increase your likelihood of finding a low numerical value hash by doing something other than just sequentially incrementing that piece of data in the input?  Or is this equivalent to trying to increase your chances of rolling a 6 (with dice) by using your other hand?
+
+**_DataWraith - May 11, 2010_**
+
+```
+  The way I understand it, since the data that's being hashed is pretty much random and because the hashing algorithm exhibits the 'avalanche effect' it probably doesn't matter if you keep starting with 1 and incrementing it or if you use pseudo random values instead, but I was wondering if anyone could support this or disprove it.
+```
+
+Yep, your understanding here is correct. It does not matter what exactly gets hashed, and no, you can't cheat without first breaking SHA-256, which is considered difficult.
+
+The salient property of cryptographic hash functions is that they are as random as is possible while still being deterministic. That's what their strength depends on -- after all if they weren't random, if there were obvious patterns, they could be broken that way. So the ideal hash function behaves just like a random number generator. It does not matter what you feed in, timestamp or not, whatever's put in there, the hash should still behave randomly (i.e. every possible outcome has the same a-priori probability of occuring). Incrementing by one works just as well as completely changing everything every step (this follows from the avalanche property). However, the initial value, before you start incrementing, must be (pseudo-)randomly chosen, or every computer will start at the same point, and the fastest one always wins, which is not what is wanted here.
+
+**_teppy - June 02, 2010_**
+
+A nice addition to the GUI would be an estimate of how many hashes/sec it's computing. Either present this as a raw number or a "you can expect to generate X packs of bitcoins per week."
+
+This might partially solve the frustration of new users not getting any Bitcoins right away.
+
+**_Satoshi Nakamoto - June 02, 2010_**
+
+That's a good idea.  I'm not sure where exactly to fit that in, but it could certainly calculate the expected average time between blocks generated, and then people would know what to expect.
+
+Every node and each processor has a different public key in its block, so they're guaranteed to be scanning different territory.
+
+Whenever the 32-bit nonce starts over at 1, bnExtraNonce gets incremented, which is an arbitrary precision integer.
 
 
+**_laszlo - June 02, 2010_**
+
+I created a little performance counter for myself to use locally, you guys are welcome to try it.
+
+Satoshi, maybe you could integrate this or something similar and put an option in there to turn it on/off?  It spams up your debug.log and shows the performance of each thread.. it also shows on the UI in the status bar where it used to say 'Generating'.
+
+**_Satoshi Nakamoto - June 21, 2010_**
+
+I integrated the hashmeter idea into the SVN version.  It displays khash/s in the left section of the status bar.
+
+Two new log messages:
+```
+21/06/2010 01:23 hashmeter   2 CPUs    799 khash/s
+21/06/2010 01:23 generated 50.00
+```
+
+grep your debug.log for "generated" to see what you've generated, and grep for "hashmeter" to see the performance.  On windows, use:
+`findstr "hashmeter generated" "%appdata%\bitcoin\debug.log"`
+
+I have the hashmeter messages once an hour.  How often do you think it should be?
+
+**_Gavin Andresen - June 22, 2010_**
+
+```
+  How about in the options menu you can turn it off or on, and specify an interval in minutes for how often it should display?
+```
+
+I say keep it simple; more choices isn't always better, it just makes it overwhelming and confusing for most users.
+
+**_Satoshi Nakamoto - June 22, 2010_**
+
+Agree.  Certainly too trivial to clutter the user's attention with.
+
+I changed it to every 30 minutes.
+
+If I increased it to every 10 minutes, it would still be a small enough presence in the log file.  Question is whether that would be more output than the user wants when they grep.
+
+
+**_laszlo - July 13, 2010_**
+
+```
+  "difficulty" : 45.38582234101263
+```
+
+It jumped from 23 in a couple days.  I think this pretty much puts an end to generating a block a day with a personal computer.. but you can still get lucky.  Now you'll need to build a cluster or hijack a college computer lab for it to be worth doing. 
+I expect the trading value will increase significantly over the next few weeks as the supply slows down; should be interesting.
+
+**_theymos - July 13, 2010_**
+
+The probability of winning per hash went from 9.90701E-12 to 5.12995E-12. So about double the difficulty.
+
+**_Satoshi Nakamoto - July 16, 2010_**
+
+The proof-of-work difficulty is currently 45.38. 
+
+It's about to increase again in a few hours.  It's only been 3-4 days since the last increase, so I expect it will increase by the max of 4 times, or very nearly the max.  That would put it at 181.54.
+
+The target time between adjustments is 14 days, 14/3.5 days = 4.0 times increase.
+
+**_Bitcoiner - July 16, 2010_**
+
+Holy....
+
+Satoshi, what happens if the rush dries up for a bit; some of the slashdotters or whoever get tired? Does the difficulty ever go back down?
+
+**_knightmb - July 16, 2010_**
+
+If I'm reading the source code correctly, it should go up and down based on how much CPU is being thrown at it. So if someone rented a super computer to drive up the difficulty for a week, then it vanished, the difficulty should float back down.
+
+**_Satoshi Nakamoto - July 16, 2010_**
+
+It adjusted to 181.54 a few minutes ago.  Typical time to get a block is about a week now.
+
+The difficulty can adjust down as well as up.
+
+The network should be generating close to 6 blocks per hour now.
+
+**_knightmb - July 16, 2010_**
+
+Yeah, I've noticed the "10 second blocks" are gone, replaced with 419 and 741 second block generation with no more in the last 20 minutes. That should keep those server farms on hold for a while  Wink
+
+Now, correct me if I'm wrong, but now that block generation is taking a lot longer, doesn't that mean that the lucky person who got the block is going to take a lot longer to be verified by the network that he/she was the winner before they could ever spend it?
+
+**_Satoshi Nakamoto - July 16, 2010_**
+
+Yes, about 20 hours.  (120 conf / 6 blocks per hour = 20 hours)  That's the normal length of time before you can spend it.  You know long before that that you won one.
+
+**_knightmb - July 16, 2010_**
+
+So if the difficulty was increased so high that it took a day to find a winning block, that means the lucky winner would have to wait 120 day before they could spend it or about 4 months if everyone else was averaging about the same speed? Seems like at the high end of the difficulty, there is an issue with coin generation vs. being able to put it into circulation by spending. Wouldn't the long delay cause a lot of generated coin to be lost because anything could happen to the PC that won in a long amount of time if the winner had to really wait that long? They might un-install the program or the computer get eaten by a virus or power surge well before then.
+
+**_Bitcoiner - July 16, 2010_**
+
+I think that the overall network is generating the same amount of blocks regardless of the difficulty; the difficulty is intended so that the network generates a block in a relatively constant amount of time. Therefore, this confirmation time should always be around the same.
+
+Satoshi or anyone else can correct me if I'm wrong.
+
+**_Satoshi Nakamoto - July 16, 2010_**
+
+Right, the difficulty adjustment is trying to keep it so the network as a whole generates an average of 6 blocks per hour.  The time for your block to mature will always be around 20 hours.
+
+The recent adjustment put us back to close to 6 blocks per hour again.
+
+There's a site where you can see the time between blocks, and since block 68545, it's been more like 10 minutes per block:
+http://nullvoid.org/bitcoin/statistix.php
+
+**_knightmb - July 16, 2010_**
+
+Ah ok, cool. I continue to be astounded by how much thought was put into this system to keep it balanced, nice job!
