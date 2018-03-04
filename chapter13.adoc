@@ -1,0 +1,63 @@
+= New Logo 
+:imagesdir: images
+
+**_Satoshi Nakamoto - February 24, 2010_**
+
+New icons, what do you think?  Better than the old one?
+
+Full size 530x529 image for scaling down to custom sizes:
+
+image::bitcoinold.png[Original Bitcoin Logo]
+
+The perspective shadow was too thick on the larger sizes.  I updated 32, 48 and the full size.
+
+I release these images into the public domain (copyright-free).  I request that derivative works be made public domain.
+
+**_Sabunir - February 25, 2010_**
+
+I like them. Do they come in higher resolutions?
+
+
+**_Satoshi Nakamoto - February 25, 2010_**
+
+Yes, the original is 546x531 pixels.
+
+It looks good at larger size too, but since the small icons are what you mostly always see, I wanted to judge it on those first.  I'll post larger sizes and full size a little later.
+
+**_Sabunir - February 25, 2010_**
+
+Excellent. This would be a good resource for those participating in the banner contest. Why unequal dimensions?
+
+My only suggestion would be to make the coin's text stand out more. At tiny resolutions outlines tend to be come unworkable, so a better option may be to experiment with contrast. Making the text significantly darker than the rest of the coin would likely increase readability. Alternately, you could make the inner circle color darker, and the text lighter.
+
+**_Satoshi Nakamoto - February 26, 2010_**
+
+Good suggestion.  I made the B slightly lighter and the background slightly darker.  Very slightly.  The foreground is now exactly the same colour as the BC in the old one.
+
+It's kind of OK if you can't easily read the B in the 16x16.  At that size, you just need to see that it's a coin.  It doesn't matter so much what's embossed on it, just that there be some detail there because it wouldn't look like a coin if it was a blank smooth circle.
+
+It's slightly wider than tall because the dark perspective under it goes more to the right than down.
+
+I finished and posted the 32x31 and 48x47 versions in the first message.  I like the 48 a lot.
+
+How does everyone feel about the B symbol with the two lines through the outside?  Can we live with that as our logo?
+
+**_Cdecker - February 27, 2010_**
+
+How about an SVG version? That way we could automatically generate smaller and larger versions as needed, and storage in the Source Control Management is an option too.
+
+**_Satoshi Nakamoto - February 27, 2010_**
+
+I don't know how to do SVG, but I did the original very large, over 500 pixels across, so it can be scaled down.  I'll give the original when I'm finished.
+
+I had to custom tweak each icon size so the vertical lines land square on their pixels, otherwise they're ugly blurry and inconsistent.  Such is the challenge of making icons.  The original will be good for scaling to custom sizes between 48 and 500 but not smaller.
+
+**_giik - March 01, 2010_**
+
+When you use SVG or another vector-format, you don't have the problems you discribed when scaling the logo. Perhaps I'll give it a go in Illustrator.
+
+**_Satoshi Nakamoto - March 02, 2010_**
+
+We have the standard icon sizes, and the full size scales nicely to anything else.
+
+I added the full size to the first post.
