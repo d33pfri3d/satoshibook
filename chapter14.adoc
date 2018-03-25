@@ -1,0 +1,54 @@
+= We Accept Bitcoin Logo
+
+**_sirius - February 07, 2010_**
+
+Everyone open your graphics editor and make a "we accept Bitcoin" logo. A good looking logo (preferably better than mine ) would be really useful.
+
+**_giik - February 07, 2010_**
+
+I took a shot. Small, clean "btc accepted" sign.
+
+Is there a high-res bitcoin logo? Or a vector-image?
+
+**_Satoshi Nakamoto - February 08, 2010_**
+
+No, sorry.  I've been meaning to redo it.  The largest icon that still looks good is the 20x20 one which is used for the tray icon in GNOME.  Any larger than that looks bad.  The 16x16 and 20x20 ones have quite a bit of hand tweaking to get the pixels to work out right.  If you just scale down a larger image, the pixels end up blurred and awkward in places where the lines in "BC" don't land square on a pixel.
+
+The best 16x16 with full alpha channel is in src/rc/bitcoin.ico.  I don't like the 32x32 version.
+
+I'm attaching bitcoin20x20.png, the 20x20 version with full transparency.
+
+---
+
+There are more submissions throughout the thread leading up to this comment
+
+---
+
+**_The Madhatter - February 24, 2010_**
+
+Am I to understand that these graphics are public domain?
+
+
+**_Ensayia - February 24, 2010_**
+
+In what way, madhatter2?
+
+As in you can take them and use them wherever? For mine I don't care, use it how you like, just try to give credit if possible.
+
+
+**_Sabunir - February 24, 2010_**
+
+Public domain? No. My images are Copyleft, to myself (satoshi or any other Bitcoin developers can have the rights to these images, upon request). In practice, Copyleft works almost the same as public domain. You are completely free to use, share, or modify my images. If you do, please consider listing me in your credits or donating an amount of coins to me, but this isn't required.
+
+
+**_BitcoinFX - February 24, 2010_**
+
+As well as GNU GPL why not attach a Creative Commons License http://creativecommons.org/ to them. You can reference the project address and request a Bitcoin donation for their reproduction.
+
+**_Sabunir - February 24, 2010_**
+
+I am not that picky. Growth of the Bitcoin network and promoting more widespread usage is sufficient reward to me.
+
+**_Satoshi Nakamoto - February 24, 2010_**
+
+If you GPL stuff, I have to avoid using it.  Nothing against GPL per-se, but Bitcoin is an MIT license project.  Anything GPL please clearly mark it as such.
