@@ -61,3 +61,124 @@ When you use SVG or another vector-format, you don't have the problems you discr
 We have the standard icon sizes, and the full size scales nicely to anything else.
 
 I added the full size to the first post.
+
+**_ArrowJ - November 02, 2010 _**
+
+Is this the "official" logo? I understand how difficult it can be to make something truly professional when you don't have the skills (which I don't) or the software (which I also don't) so I'm not trying to be rude, but wouldn't it be better if we adopted something...better? I really am not trying to be mean...I really have struggled trying to figure out how to do the stuff that a lot of the artists on deviant do. 
+
+There is at least one other thread with a set of logos and badges that are really, really promising here: http://bitcointalk.org/index.php?topic=1631.0 I promise I don't know this guy/gal (I didn't even check the username). Heck if someone else came up with another alternative that would be cool too. It seems important that we have a really nice logo with all the sizes, resolutions, and formats that might be needed.
+
+Is there a reason we couldn't adopt something else before bitcoin gets too big and it's too late to change without hurting "brand" recognition? It seems silly to stick with something that is "ok" when we could have something great.
+
+I hope I didn't step on anyone's toes to badly.
+
+**_Anonymous - November 02, 2010_**
+
+Satoshi created bitcoin so that is his preferred one hence it is the "official" one. The project is open source so if you can come up with something better people will adopt it. Thats the nature of things and of bitcoin itself. 
+
+What exactly is your issue with the "official" logo?
+
+**_srb123 - November 02, 2010_**
+
+ArrowJ is right, image is everything, and its best left to the Pro's. (i.e. Not me.)
+
+That said, the name "Bitcoin" is pretty uninspiring start for a Graphic Designer, IMO. (But that is a whole other discussion.)
+
+Kudos to Bitboy on his contribution, this kind of simple smooth and sharp image instantly tells the viewer that we are in 2010.
+
+**_ShadowOfHarbring - November 02, 2010_**
+
+Stop complaining. The current logo is just good enough.
+It has all the properties a good logo should have.
+
+PS.
+After bitcoin goes mainstream, satoshi will be incredibly rich and he can afford some professional artist to polish it more
+
+PS2.
+After some consideration, i think that the logo could be easily polished a little by adding some more 3D-effect to the coin borders, so it would actually look like a real coin. But the rest is 100% OK.
+
+**_ArrowJ - November 02, 2010_**
+
+```
+...The project is open source so if you can come up with something better people will adopt it...
+```
+
+I don't personally have the skills, but again, I think 
+
+image::BC_Logo_.png[Bitcoin Logo - bitboy November 01 2010]
+
+is a great choice.
+
+```
+"What exactly is your issue with the "official" logo?"
+```
+
+The most recent version isn't as bad as the original, but it is still not a crisp as could be desired, it doesn't scale well, has too many color shades, just has an overall "generic" look to it.
+
+```
+Stop complaining. The current logo is just good enough.
+It has all the properties a good logo should have.
+```
+
+I'm not actually complaining...just voicing an alternative opinion related to the quality of the current logo that represents the bitcoin project to most of the outside world. I feel it has few of the aesthetic properties a good logo should have. 
+
+I don't see why this can't be discussed without being offensive (I'm trying not to attack anyone personally). I'm not saying anything about the qualities of the designer as a human being...he did after all come up with the cool idea of Bitcoin in the first place, but this does not mean his artwork should be the de facto face of the project IF the goal is to increase it's popularity. It seems to me that the better face we can put on the project the better. Is it bad to strive for fantastic?
+
+```
+After some consideration, i think that the logo could be easily polished a little by adding some more 3D-effect to the coin borders, so it would actually look like a real coin. But the rest is 100% OK.
+```
+
+I personally think less 3D is in order. It's ok for it to be "abstract" in that it doesn't look exactly like a coin...I would posit that it would be better if it doesn't try to look like a real coin...after all, we aren't dealing in real coins...we are dealing in BITcoins.
+
+**_ShadowOfHarbring - November 02, 2010_**
+
+```
+I don't see why this can't be discussed without being offensive (I'm trying not to attack anyone personally). I'm not saying anything about the qualities of the designer as a human being...
+```
+
+Oh sorry, was i offensive again ? That's weird, i didn't feel it at all.
+
+You're right, actually the logo from my signature (designed by bitboy and improved by myself) may be better than the official one.
+However i don't know if Satoshi will like the license (cc by-sa).
+
+IMHO perhaps Satoshi should either ask the author or pay the author some BTC to release the works into public domain.
+
+**_ArrowJ - November 02, 2010_**
+
+I'll be honest with you, I thought I had offended with the suggestion.
+
+I hadn't thought of the license issue, but of course your right, whatever logo is used it should probably be public domain. IF the community decided to adopt Bitboy's logo I'd contribute 5 btc to "buy out" his license and turn it over to the public domain.
+
+Can this sort of thing be settled with a vote or does it not work that way? I mean we can say it's open source and whatever people use will win, but you have to admit Satoshi's logo has a little bit of an advantage...nobody wants to offend the originator of the awesome idea...I don't want to anyhow...hope I haven't!
+
+**_Anonymous - November 02, 2010_**
+
+The licence should  be the same as the original logo imo because we know for sure that is the one satoshi supports.
+
+
+**_ArrowJ - November 02, 2010_**
+
+Is that a requirement for an open source project though?
+
+
+**_ribuck - November 03, 2010_**
+
+No, just for this open source project, i.e. Satoshi's Bitcoin client.
+
+**_ArrowJ - November 03, 2010_**
+
+Understood. I had a friend explain some of the ideology a little more clearly to me. Bottom line, I hope we can end up with a top notch professional logo for this project.
+
+**_LZ - November 03, 2010_**
+
+I like icons that Satoshi published in the first post.
+
+**_Satoshi Nakamoto - November 13, 2010_**
+
+I'm happy if someone with artistic skill wants to contribute alternatives.  The icon/logo was meant to be good as an icon at the 16x16 and 20x20 pixel sizes.  I think it's the best program icon, but there's room for improvement at larger sizes for a graphic for use on websites.
+
+It'll be a lot simpler if authors could make their graphics public domain.
+
+**_bitboy - November 13, 2010_**
+
+Thanks for clearing up the issue on public domain . Now I can release the graphics I have done into public domain.
