@@ -1,0 +1,104 @@
+= Money Transfer Regulations
+
+**_NewLibertyStandard - March 02, 2010_**
+
+Does anyone happen to know what kinds of regulations are in place for people who buy and sell unofficial digital currencies such as Bitcoin? I'm particularly interested in United States regulations, but please mention any regulations of which you are aware.
+
+Registering a business or non-profit organization gives the advantage of being able to do transactions in the name of the business and forming a corporation limits liability. But it seems like it would be more trouble than it's worth to incorporate or register a business until the profits are large enough to hire employees.
+
+I noticed that in the United States, financial institutions are required to submit a currency transaction report for all transactions over $10,000 and a suspicious activity report for suspicious transactions. I don't think a private citizen would be required to submit either type of report. In any case, so long as the official currency part of the transaction is passing through a registered financial institution, the institution would already be submitting those reports for such transactions.
+
+I have read about money laundering and it seems that so long as a person is not knowingly laundering money, then the person is not committing the crime.
+
+Profits would need to be tracked for tax purposes but that can be accomplished easily enough using accounting software such as GnuCash.
+
+Am I missing anything? Are there any regulations prohibiting me from sending money to and receiving money from random strangers who may be criminals unbeknownst to me?
+
+
+**_theymos - March 02, 2010_**
+
+http://en.wikipedia.org/wiki/E-gold
+
+```
+In 2007 the proprietors of the e-gold service were indicted by the United States Department of Justice on four counts of violating money laundering regulations. In July 2008 the company and its three directors pled guilty to charges of "conspiracy to engage in money laundering" and the "operation of an unlicensed money transmitting business" in the U.S. District Court for D.C.  The company faces fines of $3.7 million.
+```
+
+Running an exchange seems very dangerous. I would never do it without talking to a lawyer and setting up a LLC.
+
+**_NewLibertyStandard - March 02, 2010_**
+
+Thanks for the reply. I agree that running an exchange does seem dangerous. I have started extremely small and limited my service so that if I am doing something wrong it will hopefully be so minor that I won't be prosecuted and so that if I am convicted of something the fines will be small enough to hopefully not bankrupt me.
+
+I've looked at that E-gold article before but this time I read it, I thought to look up some terms mentioned in it which turned up some interesting regulations concerning registration of money transmitting businesses and prohibition of unlicensed money transmitting businesses. I don't know whether my tiny service qualifies as an unlicensed money transmitting business, but if it does, I'll stop until I can get it registered. Although if there's a large non-refundable application fee, I'll have to re-evaluate whether it's worth the cost since I'm currently not trying to earn a profit.
+
+**_ihrhase - March 02, 2010_**
+
+NLS, there is no "legal" way to do what you are looking to do on a large scale, knowledge is not necessary for indictment...
+
+You are providing a tax shelter, you should automatically factor in illicit to your "hobby"
+
+**_The Madhatter - March 02, 2010_**
+
+Nah.. you guys have it wrong.
+
+It isn't the written law that you should be concerned with.
+
+You need to rely on your courts to make the 'fair and just' decisions. That is the real problem. I wouldn't dream of running any sort of "money transmitting business" (their term) or currency exchange in the USA. (See e-gold and liberty dollar.)
+
+It is probably best to run your exchanger from a different country than the one in which you reside. That would involve a corporation or trustee.
+
+($10,000 OR any "suspicious" transaction. That is subject to OPINION.. very open-ended if you ask me. So a court proceeding on failure to report based on suspicion would boil down to "he who can afford to put forth the most motions in court"... lol)
+
+Another option is an estoppel. (Again, you need to really know what you are doing.)
+
+Cheers!
+
+**_NewLibertyStandard - March 02, 2010_**
+
+Here's the legal definition of currency, 31 C.F.R. § 103.11(h) and the legal definition of a currency dealer or exchanger, 31 C.F.R. § 103.11(uu)(1) (both links take you slightly above the definitions). My lawyer friend indicated that that my service seems legal, but that's absolutely not legal advice for you folks. I'm running my little service as honestly and as legally as I know how, so until I find out that I'm doing something wrong, I'm not going to stop.
+
+**_The Madhatter - March 03, 2010_**
+
+Don't forget to look at state money transmitting licenses. That's what killed Goldage. (They were one of the largest e-gold exchangers). They were unlicensed because that thought that digital gold was outside the jurisdiction (not legal tender) of the state/federal governments. The state laws were vague enough, and law enforcement was ignorant enough, that they were prosecuted by the state of New York.
+
+(See: http://en.wikipedia.org/wiki/Goldage)
+
+Lots of people speculate that they were prosecuted for political reasons and not for "legal" ones. The central banks (and therefore the governments under their economic debt rule) do not want competing currencies. This isn't because it is competition (e-gold was soooo small compared to the FRN paper game). They didn't want e-gold to open up people's mind to the idea of alternate currencies. That is a far bigger threat.
+
+Remember that a license is an act of privilege that can be revoked/regulated. I firmly believe that any action that you can purchase a license for is fundamentally lawful. (Ex: you can't buy a license to commit a crime. No "license to kill", Bond.).
+
+It is possible to claim lawful excuse to operate unlicensed. (By pronouncement or claim by right of notary.. again, you need to know what you are doing.)
+
+Peace!
+
+**_ihrhase - March 03, 2010_**
+
+Remember NLS
+
+There are two types of law...
+
+The Law you can read, and the one the government chooses to apply to you...
+
+Your Lawyer friends may be right, but so were joe stack's and he got prosecuted...
+
+**_I-am-not-anonymous - March 03, 2010_**
+
+How encouraging...you've just told the poor fellow that even if he does everything right he could still go to jail--you're making him feel like an ethnic minority!
+
+In most cases though, if a lawyer tells you you won't go to jail, you probably will not go to jail.  Newlibertstandard uses paypal, which already practices know-your-customer and he is operating in amounts less than $10,000 which is what the money laundering and tax cheat police sniff out for.  This means he is unlikely to be doing anything that is wrong OR anything that will attract the attention of Law Enforcement.
+
+However---
+
+Thinking ahead to bitcoin's future--money changing services that operate on a large scale and don't practice know-your customer would indeed be illegal and would thus have to operate within the onionverse, changing bitcoin to money services other than paypal (perhaps offshore based like pecunix).
+
+Another idea would be for some future crypto-preneur to set up a Mom and Pop shop called "Grandpa Joe's envelopes stuffed with cash" and only accept bitcoin as payment.  lol.
+
+
+**_Satoshi Nakamoto - March 03, 2010_**
+
+[red]#When there's enough scale, maybe there can be an exchange site that doesn't do transfers, just matches up buyers and sellers to exchange with each other directly, similar to how e-bay works.#
+
+[red]#To make it safer, the exchange site could act as an escrow for the bitcoin side of the payment.  The seller puts the bitcoin payment in escrow, and the buyer sends the conventional payment directly to the seller.  The exchange service doesn't handle any real world money.#
+
+[red]#This would be a step better than e-bay.  E-bay manages to work fine even though shipped goods can't be recovered if payment falls through.#
+
